@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TipsApp - Tip Waiters Directly & Instantly</title>
+    <title>TipsApp - The Easy Way to Say "Thank You"</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,9 +12,11 @@
     <style>
         :root {
             --primary-color: #007bff;
+            --primary-dark: #0056b3;
             --secondary-color: #f8f9fa;
             --text-color: #333;
             --heading-color: #222;
+            --accent-orange: #ff9800; /* Matching your app's orange */
         }
         * {
             box-sizing: border-box;
@@ -31,6 +33,8 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        
+        /* Header & Nav */
         header {
             background: #fff;
             padding: 1rem 0;
@@ -54,16 +58,23 @@
             display: flex;
             gap: 2rem;
             margin: 0;
+            padding: 0;
         }
         nav a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 600;
+            transition: color 0.3s;
         }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
         .hero {
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #e9ecef 100%);
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
         }
         .hero h1 {
             font-size: 3rem;
@@ -71,85 +82,139 @@
             margin-bottom: 1rem;
         }
         .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.25rem;
+            max-width: 700px;
             margin: 0 auto 2rem auto;
+            color: #555;
         }
         .cta-button {
             display: inline-block;
-            background-color: var(--primary-color);
+            background-color: var(--accent-orange); /* Changed to orange to match app */
             color: #fff;
-            padding: 12px 25px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        /* Sections General */
         section {
             padding: 80px 0;
         }
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
             color: var(--heading-color);
         }
-        .how-it-works-grid {
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grids */
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
             text-align: center;
         }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Steps & Features */
         .step {
+            background: #fff;
             padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
         .step h3 {
             font-size: 1.5rem;
-            color: var(--heading-color);
             margin-top: 1.5rem;
+            color: var(--heading-color);
         }
-        .screenshot-placeholder {
+        
+        /* Image Placeholders */
+        .img-placeholder-box {
             width: 100%;
-            aspect-ratio: 9 / 16;
-            background-color: #e9ecef;
-            border: 2px dashed #ced4da;
+            height: 400px; /* Portrait phone aspect ratio approximation */
+            background-color: #f1f3f5;
+            border: 2px dashed #adb5bd;
             border-radius: 20px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-style: italic;
             color: #6c757d;
-        }
-        .contact {
-            background-color: var(--secondary-color);
-        }
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
             margin: 0 auto;
         }
+        .img-placeholder-box span {
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .screenshot-img {
+            width: 100%;
+            max-width: 300px; /* Limit width for phone screenshots */
+            height: auto;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Alternate Backgrounds */
+        .bg-light {
+            background-color: var(--secondary-color);
+        }
+
+        /* Contact & Footer */
+        .contact {
+            background-color: #fff;
+            text-align: center;
+        }
         footer {
-            background: #333;
+            background: #222;
             color: #fff;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
         }
         footer a {
-            color: #fff;
+            color: #adb5bd;
             text-decoration: none;
             margin: 0 1rem;
         }
-       
+        footer a:hover {
+            color: #fff;
+        }
 
-    /* ADD THIS NEW CLASS */
-    .screenshot-img {
-        width: 100%;
-        height: auto;
-        border-radius: 20px;
-        border: 1px solid #ddd;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -159,7 +224,9 @@
             <nav>
                 <div class="logo">TipsApp</div>
                 <ul>
-                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#for-tippers">For Tippers</a></li>
+                    <li><a href="#for-pros">For Pros</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -168,58 +235,124 @@
 
     <main>
         <section class="hero">
-            <h1>Tip Waiters Directly & Instantly</h1>
-            <p>Support your favorite service staff with secure, direct bank-to-bank payments. No hidden fees, no delays.</p>
-            <a href="#" class="cta-button">[Download The App (Coming Soon)]</a>
+            <div class="container">
+                <h1>Cashless Tipping Made Simple</h1>
+                <p>Support your favorite service professionals directly from your phone. Secure, instant, and transparent bank-to-bank payments.</p>
+                <a href="#" class="cta-button">Download App (Coming Soon)</a>
+            </div>
         </section>
 
-  
-                
-        <section id="how-it-works">
+        <section id="about">
             <div class="container">
-                <h2 class="section-title">How It Works (Payment Flow)</h2>
-                <div class="how-it-works-grid">
+                <h2 class="section-title">What is TipsApp?</h2>
+                <p class="section-subtitle">
+                    We bridge the gap between grateful customers and hardworking professionals. In a cashless world, saying "Thank you" shouldn't be hard.
+                </p>
+                <div class="grid-3">
                     <div class="step">
-                        <!-- CORRECTED IMAGE TAG -->
-                       
-                        <h3>1. Find a Waiter</h3>
-                        <p>Open the app to see nearby waiters on a map.</p>
-                        <img src="images/mapView.jpg" alt="Screenshot of the map view" class="screenshot-img">
+                        <h3>Direct Payments</h3>
+                        <p>Tips go directly from your bank account to the Pro's account. No middlemen holding your money.</p>
                     </div>
                     <div class="step">
-                        <!-- CORRECTED IMAGE TAG -->
-                        <h3>2. Select Amount</h3>
-                        <p>Choose a waiter's profile and select the tip amount.</p>
-                        <img src="images/waitersProfile.jpg" alt="Screenshot of the waiter profile" class="screenshot-img">
+                        <h3>Interactive Map</h3>
+                        <p>Find nearby waiters, bartenders, and service staff instantly using our geolocation map.</p>
                     </div>
                     <div class="step">
-                        <!-- This one is still a placeholder until you upload the next screenshot -->
-                        <h3>3. Choose Your Bank</h3>
-                        <p>You are directed to a secure Opay page to select your bank.</p>
-                        <img src="images/chooseBank.jpg" alt="Screenshot of the waiter profile" class="screenshot-img">
-                    </div>                    
+                        <h3>Transparent History</h3>
+                        <p>Track who you've tipped or how much you've earned with clear, date-filtered transaction history.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <section id="for-tippers" class="bg-light">
+            <div class="container">
+                <h2 class="section-title">How to Send a Tip</h2>
+                <p class="section-subtitle">Leaving a tip takes seconds. No cash? No problem.</p>
+                
+                <div class="grid-3">
+                    <div class="step">
+                        <h3>1. Find a Pro</h3>
+                        <p>Open the app to see nearby service professionals on the map or search by name.</p>
+                        <div class="img-placeholder-box">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>[Image needed: Home Screen Map View]</span>
+                        </div>
+                    </div>
 
+                    <div class="step">
+                        <h3>2. Choose Amount</h3>
+                        <p>Tap on a profile, view their details, and select the amount you wish to tip.</p>
+                        <div class="img-placeholder-box">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span>[Image needed: Pro Profile with 'Send Tip' button]</span>
+                        </div>
+                    </div>
 
+                    <div class="step">
+                        <h3>3. Secure Payment</h3>
+                        <p>Select your bank via Paysera. The transfer is instant and secure.</p>
+                        <div class="img-placeholder-box">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            <span>[Image needed: Bank Selection Screen]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <section id="for-pros">
+            <div class="container">
+                <h2 class="section-title">For Pros: Start Receiving Tips</h2>
+                <p class="section-subtitle">Are you a waiter, barista, or service worker? Create a profile to let customers find and tip you easily.</p>
 
+                <div class="grid-2">
+                    <div style="text-align: left;">
+                        <h3>Create Your Profile</h3>
+                        <p>Getting started is free and easy. Once registered, you will appear on the map for all nearby users.</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                            <li style="margin-bottom: 15px;"><strong>✅ Upload Photo:</strong> Add a friendly profile picture so customers recognize you.</li>
+                            <li style="margin-bottom: 15px;"><strong>✅ Add Location:</strong> Pin your workplace on the map or join an existing location.</li>
+                            <li style="margin-bottom: 15px;"><strong>✅ Get Paid:</strong> Enter your IBAN. Tips are transferred directly to your bank account.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="img-placeholder-box" style="max-width: 350px;">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        <span>[Image needed: 'Create Profile' Form]</span>
+                    </div>
+                </div>
 
+                <div class="grid-2" style="margin-top: 60px;">
+                    <div class="img-placeholder-box" style="max-width: 350px;">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+                        <span>[Image needed: Stats & History Dashboard]</span>
+                    </div>
+
+                    <div style="text-align: left;">
+                        <h3>Track Your Success</h3>
+                        <p>Stay on top of your earnings with our built-in dashboard.</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                            <li style="margin-bottom: 15px;"><strong>📊 History:</strong> View a list of all received tips with dates and amounts.</li>
+                            <li style="margin-bottom: 15px;"><strong>⭐ Feedback:</strong> Read comments and ratings left by happy customers.</li>
+                            <li style="margin-bottom: 15px;"><strong>📅 Filters:</strong> Filter your earnings by week, month, or year to see your progress.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Contact & Company Details</h2>
+                <h2 class="section-title">Contact Us</h2>
                 <div class="contact-content">
-                    <p>For any questions or support, please reach out to us.</p>
-                    <p>
-                        <strong>Tipsy</strong><br>
-                        
-                        Address: Gvazdikų g. 117 - 1, Vilnius<br>
-                        Email: tomas.usinskas@gmail.com<br>
-                        Phone: +37068406034
-                    </p>
+                    <p>Have questions, found a bug, or just want to say hi?</p>
+                    <div style="margin-top: 2rem; font-size: 1.1rem;">
+                        <p><strong>Tipsy</strong></p>
+                        <p>Address: Gvazdikų g. 117 - 1, Vilnius</p>
+                        <p>Email: <a href="mailto:tomas.usinskas@gmail.com" style="color: var(--primary-color);">tomas.usinskas@gmail.com</a></p>
+                        <p>Phone: +37068406034</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -237,9 +370,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
