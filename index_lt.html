@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TipsApp - Lengvas būdas padėkoti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="verify-paysera" content="3afa0077d7d3057e22cdff93a39c1fec">
+    <style>
+        /* Same CSS as index.html - copy the full <style> block from index.html here */
+        :root { --primary-color: #007bff; --primary-dark: #0056b3; --secondary-color: #f8f9fa; --text-color: #333; --heading-color: #222; --accent-orange: #ff9800; }
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; line-height: 1.6; color: var(--text-color); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { background: #fff; padding: 1rem 0; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--heading-color); }
+        nav ul { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }
+        nav a { text-decoration: none; color: var(--text-color); font-weight: 600; transition: color 0.3s; }
+        nav a:hover { color: var(--primary-color); }
+        .hero { background: linear-gradient(135deg, var(--secondary-color) 0%, #e9ecef 100%); text-align: center; padding: 100px 20px; }
+        .hero h1 { font-size: 3rem; color: var(--heading-color); margin-bottom: 1rem; }
+        .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem auto; color: #555; }
+        .cta-button { display: inline-block; background-color: var(--accent-orange); color: #fff; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3); transition: transform 0.2s, box-shadow 0.2s; }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4); }
+        section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 1rem; color: var(--heading-color); }
+        .section-subtitle { text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; text-align: center; }
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; align-items: center; }
+        .step { background: #fff; padding: 2rem; border-radius: 15px; border: 1px solid #eee; transition: transform 0.3s; }
+        .step:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .step h3 { font-size: 1.5rem; margin-top: 1.5rem; color: var(--heading-color); }
+        .img-placeholder-box { width: 100%; height: 400px; background-color: #f1f3f5; border: 2px dashed #adb5bd; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #6c757d; margin: 0 auto; }
+        .screenshot-img { width: 100%; max-width: 300px; height: auto; border-radius: 20px; border: 1px solid #ddd; box-shadow: 0 10px 20px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+        .bg-light { background-color: var(--secondary-color); }
+        .contact { background-color: #fff; text-align: center; }
+        footer { background: #222; color: #fff; text-align: center; padding: 3rem 0; }
+        footer a { color: #adb5bd; text-decoration: none; margin: 0 1rem; }
+        footer a:hover { color: #fff; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.2rem; } .grid-2 { grid-template-columns: 1fr; } }
+        /* Language Switcher Style */
+        .lang-switch a { margin-left: 10px; font-weight: bold; }
+        .lang-switch a.active { color: var(--primary-color); text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">TipsApp</div>
+                <ul>
+                    <li><a href="#about">Apie Mus</a></li>
+                    <li><a href="#for-tippers">Klientams</a></li>
+                    <li><a href="#for-pros">Padavėjams</a></li>
+                    <li><a href="#contact">Kontaktai</a></li>
+                    <li class="lang-switch">
+                        <a href="index.html">EN</a> | <a href="index_lt.html" class="active">LT</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Arbatpinigiai be grynųjų – paprasta</h1>
+                <p>Padėkokite savo mėgstamiems aptarnavimo specialistams tiesiai iš savo telefono. Saugūs, momentiniai ir skaidrūs bankiniai pavedimai.</p>
+                <a href="#" class="cta-button">Atsisiųsti programėlę (Greitai)</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">Kas yra TipsApp?</h2>
+                <p class="section-subtitle">
+                    Mes tiesiame tiltą tarp dėkingų klientų ir darbščių profesionalų. Pasaulyje be grynųjų pinigų pasakyti „Ačiū“ neturėtų būti sunku.
+                </p>
+                <div class="grid-3">
+                    <div class="step">
+                        <h3>Tiesioginiai mokėjimai</h3>
+                        <p>Arbatpinigiai keliauja tiesiai iš jūsų banko sąskaitos į gavėjo sąskaitą. Jokių tarpininkų, sulaikančių jūsų pinigus.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Interaktyvus žemėlapis</h3>
+                        <p>Raskite netoliese esančius padavėjus, barmenus ir aptarnaujantį personalą naudodami mūsų žemėlapį.</p>
+                    </div>
+                    <div class="step">
+                        <h3>Skaidri istorija</h3>
+                        <p>Stebėkite, kam palikote arbatpinigių arba kiek uždirbote, naudodami aiškią operacijų istoriją.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="for-tippers" class="bg-light">
+            <div class="container">
+                <h2 class="section-title">Kaip palikti arbatpinigių</h2>
+                <p class="section-subtitle">Tai užtrunka vos kelias sekundes. Neturite grynųjų? Ne bėda.</p>
+                
+                <div class="grid-3">
+                    <div class="step">
+                        <h3>1. Raskite Gavėją</h3>
+                        <p>Atidarykite programėlę ir žemėlapyje raskite netoliese esančius specialistus arba ieškokite pagal vardą.</p>
+                        <img src="images/homescreen.png" alt="TipsApp Pagrindinis Ekranas" class="screenshot-img">
+                    </div>
+
+                    <div class="step">
+                        <h3>2. Pasirinkite Sumą</h3>
+                        <p>Paspauskite ant profilio, peržiūrėkite informaciją ir pasirinkite sumą, kurią norite palikti.</p>
+                        <img src="images/chooseAmount.jpg" alt="Sumos Pasirinkimas" class="screenshot-img">
+                    </div>
+
+                    <div class="step">
+                        <h3>3. Saugus Mokėjimas</h3>
+                        <p>Pasirinkite savo banką per „Paysera“. Pervedimas yra momentinis ir saugus.</p>
+                        <div class="img-placeholder-box">
+                            <span>[Vaizdas: Banko Pasirinkimo Ekranas]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="for-pros">
+            <div class="container">
+                <h2 class="section-title">Padavėjams: Pradėkite gauti arbatpinigius</h2>
+                <p class="section-subtitle">Esate padavėjas, barista ar aptarnavimo darbuotojas? Susikurkite profilį, kad klientai jus lengvai rastų.</p>
+
+                <div class="grid-2">
+                    <div style="text-align: left;">
+                        <h3>Sukurkite savo profilį</h3>
+                        <p>Pradėti naudotis yra nemokama ir paprasta. Užsiregistravę būsite matomi žemėlapyje visiems netoliese esantiems vartotojams.</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                            <li style="margin-bottom: 15px;"><strong>✅ Įkelkite Nuotrauką:</strong> Pridėkite draugišką profilio nuotrauką, kad klientai jus atpažintų.</li>
+                            <li style="margin-bottom: 15px;"><strong>✅ Pridėkite Vietą:</strong> Pažymėkite savo darbo vietą žemėlapyje arba prisijunkite prie esamos.</li>
+                            <li style="margin-bottom: 15px;"><strong>✅ Gaukite Pinigus:</strong> Įveskite savo IBAN. Arbatpinigiai pervedami tiesiai į jūsų sąskaitą.</li>
+                        </ul>
+                    </div>
+                    
+                    <img src="images/createProfile.jpg" alt="Profilio Kūrimas" class="screenshot-img">
+                </div>
+
+                <div class="grid-2" style="margin-top: 60px;">
+                    <img src="images/myProfile.jpg" alt="Mano Profilis" class="screenshot-img">
+
+                    <div style="text-align: left;">
+                        <h3>Stebėkite savo sėkmę</h3>
+                        <p>Sekite savo uždarbį naudodami integruotą skydelį.</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                            <li style="margin-bottom: 15px;"><strong>📊 Istorija:</strong> Peržiūrėkite gautų arbatpinigių sąrašą su datomis ir sumomis.</li>
+                            <li style="margin-bottom: 15px;"><strong>⭐ Atsiliepimai:</strong> Skaitykite laimingų klientų komentarus ir įvertinimus.</li>
+                            <li style="margin-bottom: 15px;"><strong>📅 Filtrai:</strong> Filtruokite pajamas pagal savaitę, mėnesį ar metus.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Kontaktai</h2>
+                <div class="contact-content">
+                    <p>Turite klausimų, radote klaidą ar tiesiog norite pasisveikinti?</p>
+                    <div style="margin-top: 2rem; font-size: 1.1rem;">
+                        <p><strong>Tipsy</strong></p>
+                        <p>Adresas: Gvazdikų g. 117 - 1, Vilnius</p>
+                        <p>El. paštas: <a href="mailto:tomas.usinskas@gmail.com" style="color: var(--primary-color);">tomas.usinskas@gmail.com</a></p>
+                        <p>Tel.: +37068406034</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="terms_lt.html">Paslaugų Teikimo Sąlygos</a> | 
+                <a href="privacy_lt.html">Privatumo Politika</a>
+            </p>
+            <p>&copy; 2025 Tipsy. Visos teisės saugomos.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
