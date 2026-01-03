@@ -5,113 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tip Your Waiter | Tipsy</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f5f7fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; width: 100%; max-width: 400px; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-        .avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #FF9800; margin-bottom: 15px; }
-        h2 { margin: 10px 0 5px; color: #333; }
-        p { color: #777; margin-bottom: 30px; }
-        .input-group { margin-bottom: 25px; }
-        input[type="number"] { font-size: 2em; width: 120px; text-align: center; border: none; border-bottom: 2px solid #FF9800; color: #FF5722; font-weight: bold; outline: none; }
-        .btn { background: linear-gradient(to right, #FF9800, #FF5722); color: white; border: none; padding: 15px; width: 100%; border-radius: 30px; font-size: 1.2em; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
-        .btn:active { transform: scale(0.98); }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f5f7fa; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; width: 90%; max-width: 400px; padding: 25px; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        .avatar { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #FF9800; margin-bottom: 10px; }
+        h2 { margin: 5px 0; color: #333; }
+        p { color: #888; margin-bottom: 25px; }
+        
+        /* SLIDERS */
+        .slider-container { margin: 20px 0; text-align: left; }
+        .label { font-size: 0.9em; color: #888; font-weight: bold; margin-bottom: 5px; display: block; }
+        input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 20px; width: 20px; border-radius: 50%; background: #FF9800; cursor: pointer; margin-top: -8px; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 4px; cursor: pointer; background: #FFCC80; border-radius: 2px; }
+        
+        /* INPUTS */
+        .amount-display { font-size: 2.5em; color: #FF5722; font-weight: bold; margin: 10px 0; border: none; text-align: center; width: 100%; outline: none; }
+        .comment-box { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 12px; margin-top: 15px; box-sizing: border-box; font-family: inherit; resize: none; }
+        
+        /* BUTTON */
+        .btn { margin-top: 20px; background: linear-gradient(to right, #FF9800, #FF5722); color: white; border: none; padding: 16px; width: 100%; border-radius: 30px; font-size: 1.1em; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; }
         .hidden { display: none; }
     </style>
 </head>
 <body>
 
-<div class="card" id="loading">
-    <h3>Loading Waiter Profile...</h3>
-</div>
+<div class="card" id="loading"><h3>Loading...</h3></div>
+<div class="card hidden" id="error-card"><h3 style="color:red">Waiter Not Found</h3></div>
 
 <div class="card hidden" id="payment-card">
-    <img id="waiter-img" src="" class="avatar" alt="Waiter">
-    <h2 id="waiter-name">Waiter Name</h2>
-    <p id="restaurant-name">Restaurant</p>
+    <img id="waiter-img" src="" class="avatar">
+    <h2 id="waiter-name">Name</h2>
+    <p id="restaurant-name">Location</p>
 
-    <div class="input-group">
-        <span style="font-size: 2em; color: #FF5722;">€</span>
-        <input type="number" id="amount" value="5.00" step="0.50" min="0.50">
+    <span class="label" style="text-align:center">I want to tip</span>
+    <div style="display:flex; justify-content:center; align-items:center; color:#FF5722; font-weight:bold;">
+        <span style="font-size:2.5em">€</span>
+        <input type="text" id="amount-text" class="amount-display" value="0.00" oninput="manualInput()">
+    </div>
+    <div class="slider-container">
+        <input type="range" id="tip-slider" min="0" max="20" step="0.5" value="0" oninput="updateTipFromSlider()">
     </div>
 
-    <button class="btn" onclick="initiatePayment()">Pay with Bank</button>
-</div>
+    <div class="slider-container">
+        <span class="label">Rate Experience: <span id="rating-val" style="color:#FF9800">5.0</span></span>
+        <input type="range" id="rating-slider" min="1" max="5" step="0.5" value="5" oninput="updateRating()">
+    </div>
 
-<div class="card hidden" id="error-card">
-    <h3 style="color: red;">Waiter Not Found</h3>
-    <p>Please scan a valid QR code.</p>
+    <textarea id="comment" class="comment-box" rows="2" placeholder="Add a comment..."></textarea>
+
+    <button class="btn" onclick="initiatePayment()">Swipe to Pay >>></button>
 </div>
 
 <script>
-    const API_BASE = "https://api.tipsy.lt/api"; // Your Hetzner IP
-
-    // 1. Get ID from URL (e.g., tipsy.lt/pay?id=55)
+    const API_BASE = "https://api.tipsy.lt/api"; 
     const urlParams = new URLSearchParams(window.location.search);
     const waiterId = urlParams.get('id');
 
-    if (waiterId) {
-        fetchWaiter(waiterId);
-    } else {
-        showError();
-    }
+    if (waiterId) fetchWaiter(waiterId);
+    else document.getElementById('error-card').classList.remove('hidden');
 
     async function fetchWaiter(id) {
         try {
-            const response = await fetch(`${API_BASE}/waiter/${id}`);
-            if (!response.ok) throw new Error("Not Found");
+            const res = await fetch(`${API_BASE}/waiter/${id}`);
+            if (!res.ok) throw new Error();
+            const w = await res.json();
             
-            const waiter = await response.json();
+            document.getElementById('waiter-name').innerText = w.name;
+            document.getElementById('restaurant-name').innerText = w.restaurantId || "Unknown";
+            document.getElementById('waiter-img').src = w.imageUrl || "https://cdn-icons-png.flaticon.com/512/847/847969.png";
             
-            // Fill UI
-            document.getElementById('waiter-name').innerText = waiter.name;
-            document.getElementById('restaurant-name').innerText = waiter.restaurantId || "Unknown Location";
-            if(waiter.imageUrl) {
-                document.getElementById('waiter-img').src = waiter.imageUrl;
-            } else {
-                // Fallback image
-                document.getElementById('waiter-img').src = "https://cdn-icons-png.flaticon.com/512/847/847969.png"; 
-            }
-
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('payment-card').classList.remove('hidden');
-
-        } catch (e) {
-            showError();
-        }
+        } catch { document.getElementById('error-card').classList.remove('hidden'); }
     }
 
-    function showError() {
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('error-card').classList.remove('hidden');
+    function updateTipFromSlider() {
+        const val = document.getElementById('tip-slider').value;
+        document.getElementById('amount-text').value = parseFloat(val).toFixed(2);
+    }
+    
+    function manualInput() {
+        const val = parseFloat(document.getElementById('amount-text').value) || 0;
+        document.getElementById('tip-slider').value = val > 20 ? 20 : val;
+    }
+
+    function updateRating() {
+        document.getElementById('rating-val').innerText = document.getElementById('rating-slider').value;
     }
 
     async function initiatePayment() {
-        const amount = document.getElementById('amount').value;
-        const amountCents = Math.round(parseFloat(amount) * 100);
-
-        if (amountCents <= 0) { alert("Please enter a valid amount"); return; }
+        const amount = parseFloat(document.getElementById('amount-text').value);
+        if (amount <= 0) { alert("Please enter an amount"); return; }
+        
+        const rating = parseFloat(document.getElementById('rating-slider').value);
+        const comment = document.getElementById('comment').value;
 
         try {
-            const response = await fetch(`${API_BASE}/payment/initiate-simple`, {
+            const res = await fetch(`${API_BASE}/payment/initiate-simple`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    sender_id: 0, // Guest
+                    sender_id: 0, 
                     waiter_id: waiterId,
-                    amount: amountCents
+                    amount: Math.round(amount * 100),
+                    rating: Math.round(rating), // Send Rating
+                    comment: comment            // Send Comment
                 })
             });
-
-            const data = await response.json();
-            if (data.success && data.payment_url) {
-                window.location.href = data.payment_url; // Redirect to Bank
-            } else {
-                alert("Payment Error: " + (data.error || "Unknown"));
-            }
-        } catch (e) {
-            alert("Connection Failed");
-        }
+            const data = await res.json();
+            if (data.success && data.payment_url) window.location.href = data.payment_url;
+            else alert("Error: " + (data.error || "Unknown"));
+        } catch { alert("Connection Failed"); }
     }
 </script>
-
 </body>
 </html>
